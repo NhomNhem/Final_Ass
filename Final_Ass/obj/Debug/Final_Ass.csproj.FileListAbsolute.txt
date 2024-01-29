@@ -1,0 +1,6 @@
+C:\Users\truon\RiderProjects\Final_Ass\Final_Ass\bin\Debug\Final_Ass.exe
+C:\Users\truon\RiderProjects\Final_Ass\Final_Ass\bin\Debug\Final_Ass.pdb
+C:\Users\truon\RiderProjects\Final_Ass\Final_Ass\obj\Debug\Final_Ass.csproj.AssemblyReference.cache
+C:\Users\truon\RiderProjects\Final_Ass\Final_Ass\obj\Debug\Final_Ass.csproj.CoreCompileInputs.cache
+C:\Users\truon\RiderProjects\Final_Ass\Final_Ass\obj\Debug\Final_Ass.exe
+C:\Users\truon\RiderProjects\Final_Ass\Final_Ass\obj\Debug\Final_Ass.pdb
