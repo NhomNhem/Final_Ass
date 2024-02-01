@@ -5,8 +5,9 @@ using System.IO;
 using System.Linq;
 
 namespace Final_Ass
-{
-    public delegate void AddStudentHandler(object sender, EventArgs eventArgs);
+{   
+    
+    public delegate void AddStudentHandler();
 
     public class StudentManager<T> where T : RegularStudent, new()
     {
@@ -19,20 +20,50 @@ namespace Final_Ass
 
         public void AddStudent(T student)
         {
-            _students.Add(student);
-            OnStudentAdded?.Invoke(this, EventArgs.Empty);
+            
+                _students.Add(student);
+                OnStudentAdded?.Invoke();
+               // Console.WriteLine("Thêm học viên thành công");
+            
         }
-
-        public void InputStudents(int numberOfStudents)
+    
+        
+        
+        // isstudentExist
+        private bool IsStudentExist(string mssv)
         {
+            foreach (var studen in _students)
+            {
+                if (studen.MSSV == mssv)
+                    return true;
+            }
+
+            return false;
+
+        }
+        
+        
+        public void InputStudents(int numberOfStudents)
+        {   
             for (int i = 0; i < numberOfStudents; i++)
             {
                 T student = new T();
                 student.Input();
-                AddStudent(student);
+                if (!IsStudentExist(student.MSSV))
+                {
+                    AddStudent(student);
+                    Console.WriteLine("Them thanh cong!!!");
+                }
+                    
+                else
+                {
+                    Console.WriteLine("Khong them thanh cong! Ton tai hoc vien");
+                }
+                
             }
         }
-    
+        
+        
         
         // Read students from file
         public void ReadStudentsFromFile(string _path)
@@ -230,15 +261,51 @@ namespace Final_Ass
         // Count number of students by classification
         public void CountStudentByClassification()
         {
-            var count = _students.GroupBy(student => student.HocLuc)
-                .Select(group => $"{group.Key}: {group.Count()}")
-                .ToList();
-
-            foreach (var result in count)
+            if (_students == null || _students.Count == 0)
             {
-                Console.WriteLine(result);
+                Console.WriteLine("No students available.");
+                return;
+            }
+
+            Dictionary<string, int> classificationCounts = new Dictionary<string, int>
+            {
+                { "yeu", 0 },
+                { "trung binh", 0 },
+                { "kha", 0 },
+                { "gioi", 0 },
+                { "xuat sac", 0 }
+            };
+
+            foreach (var student in _students)
+            {
+                if (student != null && !string.IsNullOrEmpty(student.HocLuc))
+                {
+                    string classification = student.HocLuc.Trim().ToLower();
+            
+                    if (classificationCounts.ContainsKey(classification))
+                    {
+                        classificationCounts[classification]++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Warning: Unknown classification '{classification}'.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Warning: Invalid student data.");
+                }
+            }
+
+            foreach (var kvp in classificationCounts)
+            {
+                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
             }
         }
+
+
+
+
 
         
 

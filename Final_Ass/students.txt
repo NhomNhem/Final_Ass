@@ -17,4 +17,4 @@ ps16, Noah Moore, 7.5, noah.moore@example.com
 ps17, Olivia King, 9.2, olivia.king@example.com
 ps18, Paul Parker, 6.8, paul.parker@example.com
 ps19, Quinn Scott, 8.0, quinn.scott@example.com
-ps20, Rachel Phillips, 5.7, rachel.phillips@example.com
+ps20, Rachel Phillips, 1.0, rachel.phillips@example.com

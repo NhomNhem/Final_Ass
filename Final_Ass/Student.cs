@@ -23,7 +23,7 @@ namespace Final_Ass
         }
         #endregion
 
-        #region  Absatract
+        #region  Abstract
         public abstract string GetPerformace();
         public abstract void InputFromFile(Student student);
         abstract public void Input();
@@ -33,6 +33,9 @@ namespace Final_Ass
         public abstract void SetHocLuc();
 
         #endregion
+
+
+        
         
         
         protected bool IsValidEmail(string email)
@@ -51,7 +54,7 @@ namespace Final_Ass
 
         public override string ToString()
         {
-            return $"Họ tên: {HoTen}, Điểm: {Diem}, Học Lực: {HocLuc}, Email: {Email}";
+            return $" MSSV: {MSSV}, Họ tên: {HoTen}, Điểm: {Diem}, Học Lực: {HocLuc}, Email: {Email}";
         }
     }
 }

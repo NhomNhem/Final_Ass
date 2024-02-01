@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Final_Ass;
@@ -31,7 +32,9 @@ namespace Final_Assignment
         static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
-
+            
+            Console.WriteLine(Environment.CurrentDirectory);
+            
             while (true)
             {
                 PrintMenu();
@@ -62,6 +65,7 @@ namespace Final_Assignment
             }
         }
 
+        #region Menu
         static void PrintMenu()
         {
             Console.WriteLine("===== MENU =====");
@@ -119,7 +123,9 @@ namespace Final_Assignment
                     break;
             }
         }
-
+    
+        #endregion
+        #region ProcessOption
         private static void CountStudentsByAcademicPerformance()
         {
             _studentManager.CountStudentByClassification();
@@ -170,23 +176,46 @@ namespace Final_Assignment
         {   
             // normal input
             
-            Console.Write("Nhập số lượng học viên: ");
-            int n = int.Parse(Console.ReadLine());
-            _studentManager.InputStudents(n);
+            
+            while (true)
+            {   
+                Console.Write("Nhập số lượng học viên: ");
+                if (int.TryParse(Console.ReadLine(), out int n))
+                {
+                    _studentManager.InputStudents(n);
+                    
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Nhap lai!!");
+                }
+                
+                    
+                
+            }
+            //int n = int.Parse(Console.ReadLine());
+            
             
             //input fromfile
             //_studentManager.ReadStudentsFromFile();
         }
-        
+        #endregion   
         
         //read from file
         static void ReadStudentsFromFile()
         {
             Console.Write("Nhập tên file: ");
             string fileName = "students.txt"; //Console.ReadLine();
-            //"C:\Users\truon\RiderProjects\Final_Ass\Final_Ass\students.txt";
-            string path = @"C:\Users\truon\RiderProjects\Final_Ass\Final_Ass\";
-            _studentManager.ReadStudentsFromFile(path + fileName);
+            
+            //string path = "students.txt";
+            // /Users/thuthao/Documents/CNTT/C_Shapre/Final_Ass/Final_Ass/students.txt
+            // path
+            string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Documents", "CNTT", "C_Shapre", "Final_Ass", "Final_Ass");
+            
+            //_studentManager.ReadStudentsFromFile( _path+ fileName);
+            _studentManager.ReadStudentsFromFile(Path.Combine(_path, fileName));
+
         }
     }
 }

@@ -29,16 +29,47 @@ namespace Final_Ass
             else return "Xuat Sac";
         }
         public override void Input()
-        {
-            Console.Write("Nhập họ và tên (từ 16 đến 40 ký tự): ");
-            HoTen = Console.ReadLine();
+        {   
+            
+            Console.Write("Nhập MSSV: ");
+            MSSV = Console.ReadLine();
+            
+            Console.Write($"Nhập tên đầy đủ (6 - 40 ký tự): ");
+            HoTen = ReadFullName(6, 40);
 
             Console.Write("Nhập điểm (từ 0 đến 10): ");
             Diem = ReadDouble(0,10);
 
             Console.Write("Nhập email (từ 8 đến 50 ký tự, phải có '@' và '.'): ");
             Email = ReadEmail();
+            // fix hocluc
+            SetHocLuc();
+            
+            
         }
+
+        // read HoTen
+        private string ReadFullName(int min, int max)
+        {
+            string fullName;
+            do
+            {
+                
+                fullName = Console.ReadLine().Trim();
+
+                if (fullName.Length < min || fullName.Length > max)
+                {
+                    Console.WriteLine($"Tên đầy đủ phải có từ {min} đến {max} ký tự. Vui lòng nhập lại.");
+                }
+
+            } while (fullName.Length < min || fullName.Length > max);
+
+            return fullName;
+
+        }
+        
+        
+        
         
         public override void InputFromFile(Student student)
         {
