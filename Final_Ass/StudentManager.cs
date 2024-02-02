@@ -49,6 +49,8 @@ namespace Final_Ass
             {
                 T student = new T();
                 student.Input();
+                
+                
                 if (!IsStudentExist(student.MSSV))
                 {
                     AddStudent(student);
@@ -59,6 +61,8 @@ namespace Final_Ass
                 {
                     Console.WriteLine("Khong them thanh cong! Ton tai hoc vien");
                 }
+                
+                
                 
             }
         }
@@ -105,6 +109,33 @@ namespace Final_Ass
         }
         
         
+        // Write students to file
+        public void WriteStudentsToFile(string _path)
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(_path))
+                {
+                    foreach (var student in _students)
+                    {
+                        sw.WriteLine($"{student.MSSV},{student.HoTen},{student.Diem},{student.Email}");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Ghi file thất bại.");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+
+
+
+
+
+
+
         // find student by point int range entered by user
         public void SearchByScoreRange()
         {

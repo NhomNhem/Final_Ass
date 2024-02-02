@@ -23,9 +23,10 @@ namespace Final_Assignment
             { 7, "Xuất 5 học viên có điểm cao nhất" },
             { 8, "Tính điểm trung bình của lớp" },
             { 9, "Xuất danh sách học viên có điểm trên điểm trung bình của lớp" },
-            { 10, "Tổng hợp số học viên theo học lực" },
+            {10, "Tổng hợp số học viên theo học lực" },
             {11, "ReadFromFile"},
             {12,"Clear Screen"},
+            {13, "Save"},
             { 0, "Thoát" },
         };
 
@@ -117,6 +118,9 @@ namespace Final_Assignment
                     break;
                 case 12:
                     Console.Clear();
+                    break;
+                case 13:
+                    WriteStudentToFile();
                     break;
                 default:
                     Console.WriteLine("Chọn không hợp lệ. Vui lòng chọn lại!");
@@ -217,5 +221,17 @@ namespace Final_Assignment
             _studentManager.ReadStudentsFromFile(Path.Combine(_path, fileName));
 
         }
+        // write student 
+
+        static void WriteStudentToFile()
+        {
+            string fileName = "students_outPut.txt";
+            string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Documents", "CNTT", "C_Shapre", "Final_Ass", "Final_Ass");
+            _studentManager.WriteStudentsToFile(Path.Combine(_path, fileName));
+        }
+        
+        
+        
+        
     }
 }
